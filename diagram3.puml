@@ -1,0 +1,19 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam shadowing false
+
+component "BBInvForm.cshtml\n(Razor View)" as View
+component "InvResource.resx\nInvResource.fr.resx" as Resx
+component "BBInvForm.js\n(JavaScript)" as JS
+component "CSS\n(form-check, display)" as CSS
+component "jQuery\n+ Validate" as JQuery
+component "Browser DOM" as DOM
+
+Resx --> View : localized strings
+View --> DOM : renders HTML\n(ids, names)
+CSS --> DOM : visual rules\n(display)
+JS --> JQuery : selectors, events
+JQuery --> DOM : DOM manipulation
+JS --> DOM : show / hide / enable / disable
+
+@enduml

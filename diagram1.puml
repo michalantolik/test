@@ -1,0 +1,32 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam shadowing false
+
+actor User
+
+component "Browser UI\n(Radio Buttons)" as UI
+component "Razor View\nBBInvForm.cshtml" as View
+component "Resource Files\nInvResource(.resx)" as Resx
+component "CSS\n(form-check / display rules)" as CSS
+component "JavaScript\nBBInvForm.js" as JS
+component "jQuery\n+ Validation" as JQuery
+
+User --> UI : selects radio option
+
+View --> UI : renders HTML\n(ids, names, inputs)
+Resx --> View : localized strings\n(question + labels)
+CSS --> UI : visibility & layout\n(display: none/block)
+
+UI --> JS : change event\n(input[type=radio])
+JS --> JQuery : DOM queries\n& validation
+JS --> UI : show/hide sections\n(enable/disable submit
+JS --> JS : checkEntireForm()
+
+note right of JS
+Uses selectors like:
+#divNewScorecardOrNo
+input[name=optradioOldScorecard]
+#divDisclaimerData
+end note
+
+@enduml

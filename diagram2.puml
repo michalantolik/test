@@ -1,0 +1,31 @@
+@startuml
+actor User
+participant "Browser DOM" as DOM
+participant "jQuery" as JQuery
+participant "BBInvForm.js" as JS
+participant "Validation\n(jQuery.validate)" as Validate
+
+User -> DOM : Select radio option\n(optradioOldScorecard)
+DOM -> JQuery : change event
+JQuery -> JS : onChange handler
+
+JS -> JS : checkEntireForm()
+
+JS -> DOM : read checked value\ninput[name=optradioOldScorecard]
+JS -> Validate : validate forms\n(reports, employee, attachments)
+
+alt form invalid
+  JS -> DOM : disable Save & Send button
+else form valid
+  JS -> DOM : enable Save & Send button
+end
+
+alt Disclaimer = "No"
+  JS -> DOM : show #divDisclaimerData
+  JS -> DOM : hide category & submit sections
+else Disclaimer = "Yes"
+  JS -> DOM : hide #divDisclaimerData
+  JS -> DOM : show category section
+end
+
+@enduml

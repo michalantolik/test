@@ -1,0 +1,27 @@
+@startuml
+package "Presentation" {
+  class RazorView {
+    render radio buttons
+    assign IDs & names
+    inject resource strings
+  }
+}
+
+package "Client Logic" {
+  class BBInvFormJS {
+    bind events
+    validate form
+    control UI flow
+  }
+}
+
+package "Resources" {
+  class InvResource {
+    EN strings
+    FR strings
+  }
+}
+
+RazorView --> InvResource
+BBInvFormJS --> RazorView : relies on IDs
+@enduml

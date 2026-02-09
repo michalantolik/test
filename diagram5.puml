@@ -1,0 +1,8 @@
+@startuml
+skinparam shadowing false
+
+rectangle "BBInvForm.cshtml\n❌ Question + radios" 
+rectangle "InvResource(.resx)\n❌ Question strings" 
+rectangle "BBInvForm.js\n❌ Validation + change handler"
+
+@enduml

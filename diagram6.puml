@@ -1,0 +1,59 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam defaultTextAlignment left
+
+title Scorecard Platform Question — BEFORE (top) vs AFTER (bottom)
+
+package "BEFORE — question exists" {
+
+  component "Razor View\nBBInvForm.cshtml" as ViewBefore
+  component "Resources\nInvResource.resx\nInvResource.fr.resx" as ResxBefore
+  component "JavaScript\nBBInvForm.js" as JSBefore
+  component "Browser UI" as UIBefore
+
+  ResxBefore --> ViewBefore : question + option strings
+  ViewBefore --> UIBefore : renders question\n+ radio buttons
+  JSBefore --> UIBefore : listens to radio change\ncontrols visibility\nblocks submit
+
+  note right of ViewBefore
+  ✔ divNewScorecardOrNo
+  ✔ optradioOldScorecard
+  end note
+
+  note right of JSBefore
+  ✔ change handler
+  ✔ required validation
+  ✔ submit gating
+  end note
+}
+
+package "AFTER — question removed" {
+
+  component "Razor View\nBBInvForm.cshtml" as ViewAfter
+  component "Resources\nInvResource.resx\nInvResource.fr.resx" as ResxAfter
+  component "JavaScript\nBBInvForm.js" as JSAfter
+  component "Browser UI" as UIAfter
+
+  ResxAfter --> ViewAfter : remaining strings only
+  ViewAfter --> UIAfter : renders form\n(no question)
+  JSAfter --> UIAfter : form logic\nwithout dependency
+
+  note right of ViewAfter
+  ❌ divNewScorecardOrNo removed
+  ❌ radio inputs removed
+  end note
+
+  note right of ResxAfter
+  ❌ strNewScorecardOrNo
+  ❌ optionExistingScorecard
+  ❌ optionNewScorecard
+  end note
+
+  note right of JSAfter
+  ❌ radio change handler
+  ❌ required validation rule
+  end note
+}
+
+@enduml
