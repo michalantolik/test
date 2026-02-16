@@ -1,0 +1,19 @@
+﻿ddlFormCategory, 		select
+ddlRegion, 				select
+
+divCmoCode, 			div
+divDisclaimer, 			div
+divDisclaimerData, 		div
+divEmployeeInformation, div
+divFormCategory, 		div
+divRmc, 				div
+
+frmEmployeeInformation, form
+
+optradioN, 				input
+optradioY, 				input
+txtCMOCode, 			input
+txtEmpName, 			select
+txtMgrName, 			input
+txtRMC, 				input
+txtSubmitter, 			select
